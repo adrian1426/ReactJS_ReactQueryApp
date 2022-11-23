@@ -9,7 +9,8 @@ function NewPost() {
   const queryClient = useQueryClient();
 
   const { mutate, error, isLoading, isSuccess, reset } = useMutation(createNewPost, {
-    onSuccess: () => {
+    onSuccess: (post) => {
+      queryClient.setQueryData(['posts'], prevPosts => prevPosts.concat(post));
       queryClient.invalidateQueries(['posts']);
     }
   });
