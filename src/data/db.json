@@ -39,6 +39,26 @@
       "id": 8,
       "title": "dolorem dolore est ipsam",
       "body": "dignissimos aperiam dolorem qui eum\nfacilis quibusdam animi sint suscipit qui sint possimus cum\nquaerat magni maiores excepturi\nipsam ut commodi dolor voluptatum modi aut vitae"
+    },
+    {
+      "title": "Adrian",
+      "body": "mi programa con react query",
+      "id": 9
+    },
+    {
+      "title": "Leer react query",
+      "body": "Aprendiendo react query como los grandes",
+      "id": 10
+    },
+    {
+      "title": "Aprender clean code",
+      "body": "estudiando clean code\n",
+      "id": 11
+    },
+    {
+      "title": "Futbol",
+      "body": "me gusta el futbol",
+      "id": 12
     }
   ]
 }

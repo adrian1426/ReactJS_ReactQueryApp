@@ -1,27 +1,28 @@
 import React, { useState } from "react";
+import { useMutation, useQueryClient } from "react-query";
 import { createNewPost } from "../services/postServices";
 
 function NewPost() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const queryClient = useQueryClient();
+
+  const { mutate, error, isLoading, isSuccess, reset } = useMutation(createNewPost, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['posts']);
+    }
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setIsLoading(true);
-    try {
-      await createNewPost({ title, body });
-
-      setTitle("");
-      setBody("");
-    } catch (error) {
-      setError(error);
-    }
-
-    setIsLoading(false);
+    mutate({ title, body }, {
+      onSuccess: () => {
+        setTitle('');
+        setBody('');
+      }
+    });
   };
 
   return (
@@ -67,10 +68,14 @@ function NewPost() {
             Error creating the post: {error.message}
           </p>
         )}
-        {/* <div className="alert alert-success alert-dismissible" role="alert">
-          The post was saved successfuly
-          <button type="button" className="btn-close"></button>
-        </div> */}
+        {
+          isSuccess && (
+            <div className="alert alert-success alert-dismissible" role="alert">
+              The post was saved successfuly
+              <button onClick={reset} type="button" className="btn-close"></button>
+            </div>
+          )
+        }
       </form>
     </section>
   );

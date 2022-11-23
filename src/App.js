@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState } from "react";
+import NewPost from "./components/NewPost";
 import Post from "./components/Post";
 import Posts from "./components/Posts";
 
@@ -26,6 +27,9 @@ export default function App() {
           ) :
           (
             <div className="row gap-4">
+              <div className="col-md">
+                <NewPost />
+              </div>
               <div className="col-md">
                 <Posts setPostId={setPostId} />
               </div>
